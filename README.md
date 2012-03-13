@@ -254,10 +254,11 @@ Note `version_at` gives you the object, not a version, so you don't need to call
 Undeleting is just as simple:
 
     >> widget = Widget.find 42
+    >> latest_version = widget.versions.last
     >> widget.destroy
     # Time passes....
-    >> widget = Version.find(153).reify    # the widget as it was before it was destroyed
-    >> widget.save                         # the widget lives!
+    >> widget = latest_version.reify    # the widget as it was before it was destroyed
+    >> widget.save                      # the widget lives!
 
 In fact you could use PaperTrail to implement an undo system, though I haven't had the opportunity yet to do it myself.  However [Ryan Bates has](http://railscasts.com/episodes/255-undo-with-paper-trail)!
 
